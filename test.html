@@ -7,11 +7,11 @@
 
     <script>
 
-      let getUser = 'http://45.33.45.39:8888/getuser';
+      let getUser = 'http://45.33.45.39:8081/getuser';
 
       function test() {
 
-        fetch('http://45.33.45.39:8888/getuser').then(function(response) {
+        fetch('http://45.33.45.39:8081/getuser').then(function(response) {
             return response.json();
         }).then(function(serverUser) {
             if(serverUser !== user && serverUser == 0){
