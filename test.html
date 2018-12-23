@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | The Marauder‘s Map</title>
+
+    <script>
+
+      let getUser = 'http://45.33.45.39:8888/getuser';
+
+      function test() {
+
+        fetch('http://45.33.45.39:8888/getuser').then(function(response) {
+            return response.json();
+        }).then(function(serverUser) {
+            if(serverUser !== user && serverUser == 0){
+              gameInstance.SendMessage("InputHandler", "ActivatePlayer", 0);
+              user = 0;
+              flag = false;
+            }else if(serverUser !== user && serverUser == 1){
+              gameInstance.SendMessage("InputHandler", "ActivatePlayer", 1);
+              flag = false;
+              user = 1;
+            }
+        }).catch(function(error) {
+            console.log('Request failed', error)
+        });
+      }
+  
+    </script>
+  </head>
+  <body>
+    <div class="webgl-content">
+      <button type="button"onclick="test()">Click Me!</button>
+      <div class="footer">
+        <div class="webgl-logo"></div>
+        <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+        <div class="title">The Marauder‘s Map</div>
+      </div>
+    </div>
+  </body>
+</html>
